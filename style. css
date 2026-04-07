@@ -1,0 +1,145 @@
+:root {
+    --bg: #050a18;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --neon-blue: #00f2ff;
+    --neon-purple: #7000ff;
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --error: #ff4d4d;
+    --success: #00ff88;
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Background Animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: -10%; left: -10%;
+    width: 40%; height: 40%;
+    background: radial-gradient(circle, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
+    z-index: -1;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(5, 10, 24, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-size: 24px; font-weight: 800; letter-spacing: 2px; }
+.logo span { color: var(--neon-blue); }
+
+.nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-dim); transition: 0.3s; font-size: 14px; }
+.nav-links a:hover { color: var(--neon-blue); }
+
+/* Buttons */
+.btn-neon {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.btn-neon:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border: none; color: white; padding: 15px 35px; border-radius: 5px; cursor: pointer;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.4s ease;
+}
+
+.glass-card:hover {
+    border-color: var(--neon-blue);
+    transform: translateY(-5px);
+}
+
+/* Sections & Visibility */
+.page { display: none; padding: 60px 8%; min-height: 90vh; }
+.page.active { display: block; animation: fadeIn 0.5s ease; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero { display: flex; align-items: center; gap: 50px; padding-top: 50px; }
+.hero-text h1 { font-size: 60px; line-height: 1.1; margin-bottom: 20px; }
+.text-gradient {
+    background: linear-gradient(to right, var(--neon-blue), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Dashboard Styles */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.water-container {
+    width: 100%; height: 20px; background: #111; border-radius: 10px;
+    margin: 15px 0; overflow: hidden;
+}
+
+.water-level { height: 100%; width: 75%; transition: 1s ease; }
+
+.big-code {
+    font-size: 48px; font-weight: 800; color: var(--neon-blue);
+    text-align: center; margin: 20px 0; letter-spacing: 10px;
+}
+
+/* Forms */
+input, select {
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    background: rgba(0,0,0,0.3); border: 1px solid #333;
+    color: white; border-radius: 8px;
+}
+
+.hidden { display: none; }
+.error-msg { color: var(--error); font-size: 14px; margin-top: 10px; }
+.alert-msg { color: var(--error); font-weight: bold; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-text h1 { font-size: 40px; }
+    .nav-links { display: none; }
+}
