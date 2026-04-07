@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washify | Smart Laundry Systems</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">WASH<span>IFY</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">Process</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li id="nav-auth"><button onclick="showPage('login')" class="btn-neon">Login</button></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>Smart Laundry <br><span class="text-gradient">Booking & Monitoring</span></h1>
+                    <p>IoT-powered laundry management for modern hostels and apartments. No waiting, no conflicts, just pure efficiency.</p>
+                    <div class="hero-btns">
+                        <button onclick="showPage('login')" class="btn-primary">Book Now</button>
+                        <button onclick="showPage('features')" class="btn-outline">View Features</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="glass-card floating">
+                        <i class="fas fa-microchip"></i>
+                        <p>ESP32 Integrated</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="page">
+            <div class="auth-container">
+                <div class="glass-card auth-card">
+                    <h2>Welcome Back</h2>
+                    <p>Enter details to access your hostel machine</p>
+                    <form id="login-form">
+                        <input type="text" id="login-user" placeholder="Username (e.g. abhinav)" required>
+                        <input type="text" id="login-hostel" placeholder="Hostel Name" required>
+                        <input type="text" id="login-room" placeholder="Room Number" required>
+                        <button type="submit" class="btn-neon full-width">Sign In</button>
+                    </form>
+                    <p id="login-error" class="error-msg"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="page">
+            <div class="dashboard-header">
+                <h2>Welcome, <span id="dash-user-name" class="text-gradient">User</span></h2>
+                <div class="user-meta"><span id="dash-hostel"></span> | Room <span id="dash-room"></span></div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="glass-card status-card">
+                    <h3><i class="fas fa-tint"></i> System Status</h3>
+                    <div class="water-container">
+                        <div id="water-bar" class="water-level"></div>
+                    </div>
+                    <p id="water-text">Water Level: High</p>
+                    <p id="system-alert" class="alert-msg"></p>
+                </div>
+
+                <div class="glass-card booking-card">
+                    <h3><i class="fas fa-calendar-plus"></i> New Booking</h3>
+                    <select id="machine-select">
+                        <option value="Machine 1">Machine 1 (Front Load)</option>
+                        <option value="Machine 2">Machine 2 (Top Load)</option>
+                        <option value="Machine 3">Machine 3 (Dryer)</option>
+                    </select>
+                    <input type="time" id="slot-time">
+                    <button id="book-btn" class="btn-neon full-width">Generate Access Code</button>
+                </div>
+
+                <div id="receipt-area" class="glass-card receipt-card hidden">
+                    <h3>Access Code</h3>
+                    <div class="big-code" id="access-code-display">----</div>
+                    <p>Valid for: <span id="receipt-time"></span></p>
+                    <button onclick="window.print()" class="btn-outline small">Download Receipt</button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h3>Recent Bookings</h3>
+                <div id="booking-history" class="history-list">
+                    </div>
+            </div>
+            
+            <button onclick="logout()" class="btn-outline logout-btn">Logout</button>
+        </section>
+
+        <section id="features" class="page">
+            <h2 class="section-title">System Features</h2>
+            <div class="feature-grid">
+                <div class="glass-card f-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>24/7 Slot Booking</h3>
+                    <p>Reserve your spot anytime via the web portal.</p>
+                </div>
+                <div class="glass-card f-card">
+                    <i class="fas fa-key"></i>
+                    <h3>Secure Access</h3>
+                    <p>Unique 4-digit codes generated for every session.</p>
+                </div>
+                <div class="glass-card f-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>IoT Control</h3>
+                    <p>Powered by ESP32 for real-time hardware activation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="page">
+            <h2 class="section-title">Pricing Plans</h2>
+            <div class="pricing-container">
+                <div class="glass-card price-card">
+                    <h4>Pay Per Wash</h4>
+                    <div class="price">₹40<span>/session</span></div>
+                    <ul>
+                        <li>1 Machine Usage</li>
+                        <li>SMS Notification</li>
+                        <li>Digital Receipt</li>
+                    </ul>
+                    <button class="btn-outline">Select</button>
+                </div>
+                <div class="glass-card price-card featured">
+                    <div class="badge">Best Value</div>
+                    <h4>Monthly Pro</h4>
+                    <div class="price">₹500<span>/month</span></div>
+                    <ul>
+                        <li>Unlimited Washes</li>
+                        <li>Priority Booking</li>
+                        <li>Maintenance Support</li>
+                    </ul>
+                    <button class="btn-neon">Select Plan</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
